@@ -9,7 +9,7 @@
     <title>Register</title>
 </head>
 <body>
-    
+
 <form id="form_register" action="./Register/UserRegister"  method="post">
     <h4>ĐĂNG KÝ TÀI KHOẢN</h4>
   <div class="form-group">
@@ -27,7 +27,12 @@
     <label for="exampleInputPassword1">Username</label>
     <input type="text" class="form-control" id="username" name="username" placeholder="Username...">
   </div>
-
+<?php
+  if(isset($data["result"])){
+    if($data["result"] == false)
+      echo "Username đã tồn tại!!!";
+  }
+?>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="password" name="password" placeholder="Password...">
@@ -45,6 +50,7 @@
   <div>
     <a id="link_login" href="../../Login">Tôi đã có tài khoản</a>
     <button type="submit" name="btnRegister" class="btn btn-primary">Register</button>
+    <a id="link_register" href="../../Home">Trở về trang chủ</a>
   </div>
   
 </form>

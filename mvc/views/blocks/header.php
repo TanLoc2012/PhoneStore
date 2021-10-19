@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../public/css/header.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="https://tokyolife.vn/media/favicon/stores/1/App_Logo_2362px-01-01.png">
+    <link rel="stylesheet" href="http://localhost/public/font/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="../../public/css/grid.css">
+    <link rel="stylesheet" href="../../public/css/style.css">
+    <link rel="stylesheet" href="../../public/css/base.css">
+    <link rel="stylesheet" href="../../public/css/responsive.css">
+    <title>Web bán điện thoại</title>
 </head>
+
 <body>
 <div class="header">
             <!-- header-bottom -->
             <div class="grid wide">
                 <div class="header-bottom">
                     <div class="header-bottom_logo">
-                        <a href="./Home">
+                        <a href="../../Home">
                             <img src="https://tokyolife.vn/media/logo/stores/1/LOGO-TKL-01.png" alt="">
                         </a>
                     </div>
@@ -77,7 +88,7 @@
                                             <a href="../../Register">Đăng ký tài khoản</a>
                                         </li>
                                         <li class="header-info_about-item">
-                                            <a href="./UserLogout">Đăng xuất</a>
+                                            <a href="../../Home">Đăng xuất</a>
                                         </li>
                                         <li class="header-info_about-item">
                                             <a href="#">Đơn hàng của tôi</a>

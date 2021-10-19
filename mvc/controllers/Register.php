@@ -28,11 +28,17 @@ class Register extends Controller{
             $kq = $this->UserModel->InsertNewUser($fullname, $email, $username, $password, $phone_number, $address);
             
             // show home
-            $result = true;
-            $this->view("home", [
-                "result"=> $result,
-                "fullname"=>$fullname
-            ]);
+            if($kq["result"]) {
+                $this->view("home", [
+                    "result"=> $kq["result"],
+                    "fullname"=>$fullname
+                ]);
+            }
+            else $this->view("register", [
+                "result"=> $kq["result"]
+            ]);;
+
+            
         }
     }
 }

@@ -2,16 +2,7 @@
    
    .introduce-container {
     position: relative;
-}
-
-.introduce-container::before {
-    content: "";
     background-color: #F3F3F3;
-    position: absolute;
-    top: var(--nav-height);
-    left: 0;
-    right: 0;
-    bottom: 0;
 }
 
 .bar-menu {

@@ -36,6 +36,7 @@
         <div>
             <a id="link_register" href="../../Register">Đăng ký tài khoản</a>
             <button type="submit" name="btnLogin" class="btn btn-primary">Login</button>
+            <a id="link_register" href="../../Home">Trở về trang chủ</a>
         </div>
     </form>
 
