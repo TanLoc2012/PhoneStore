@@ -1,11 +1,12 @@
 <?php
-
+require_once "mvc/utility/utility.php";
 class Register extends Controller{
 
     public $UserModel;
 
     public function __construct(){
         $this->UserModel = $this->model("UserModel");
+      
     }
 
     public function SayHi(){
@@ -16,23 +17,19 @@ class Register extends Controller{
         
         if( isset($_POST["btnRegister"]) ) {
             // get data
-            $fullname = $_POST["fullname"];
-            $email = $_POST["email"];
-            $username = $_POST["username"];
-            $password = $_POST["password"];
-            // $password = password_hash($password, PASSWORD_DEFAULT);
-            $phone_number = $_POST["phone_number"];
-            $address = $_POST["address"];
+            $fullname = getPost('fullname');
+            $email = getPost('email');
+            $password = getPost('password');
+            $password = getSecurityMD5($password);
+            $phone_number = getPost('phone_number');
+            $address = getPost('address');
 
             // insert database
-            $kq = $this->UserModel->InsertNewUser($fullname, $email, $username, $password, $phone_number, $address);
-            
+            $kq = $this->UserModel->InsertNewUser($fullname, $email, $password, $phone_number, $address);
+          
             // show home
             if($kq["result"]) {
-                $this->view("home", [
-                    "result"=> $kq["result"],
-                    "fullname"=>$fullname
-                ]);
+                $this->view("home", []);
             }
             else $this->view("register", [
                 "result"=> $kq["result"]

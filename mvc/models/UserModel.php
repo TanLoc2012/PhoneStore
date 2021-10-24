@@ -1,51 +1,57 @@
 <?php
-
 class UserModel extends DB{
 
-    public function InsertNewUser($fullname, $email, $username, $password, $phone_number, $address){
+    public function InsertNewUser($fullname, $email, $password, $phone_number, $address){
         $result = false;
-        $qrUsername = "SELECT * FROM user WHERE username='".$username."'";
-        $relUsername = mysqli_query($this->con, $qrUsername);
-        if(mysqli_num_rows($relUsername) > 0) {
+        
+        if($fullname == '' || $email == '' || $password == ''|| $phone_number == ''|| $address == ''  || strlen($password) < 6) {
             return [
                 "result"=>$result
             ];
         }
-        if($fullname == '' || $email == '' || $username == '' || $password == ''|| $phone_number == ''|| $address == '') {
+        $userExist = $this->executeResult("select * from User where email = '$email'", true);
+        if($userExist != NULL){
             return [
                 "result"=>$result
             ];
         }
-        $qr = "INSERT INTO user(fullname, email, phone_number, address, password, username)
-            VALUES('$fullname','$email','$phone_number','$address','$password','$username')";
-        if( mysqli_query($this->con, $qr) ) {
+        else {
+            $qr = "INSERT INTO user(fullname, email, phone_number, address, password, role_id)
+            VALUES('$fullname','$email','$phone_number','$address','$password',1)";
+            $this->execute($qr);
             $result = true;
-        }
-
-        return [
-            "result"=>$result
-        ];
+            return [
+                "result"=>$result
+            ];
+            
+        } 
     }
 
-    public function XacNhanTaiKhoan($username, $password){
-        $qr = "SELECT * FROM user WHERE username='".$username."' AND password='".$password."'  ";
-        $result = mysqli_query($this->con, $qr);
-        $data = array();
-        while ($row = mysqli_fetch_array($result, 1)){
-            $data = $row;
+    public function XacNhanTaiKhoan($email, $password){
+        $result = false;
+        $qr = "SELECT * FROM user WHERE email='$email' AND password='$password' AND deleted=0  ";
+        $userExist = $this->executeResult($qr, true);
+        if($userExist == null){
+            return [
+                "result"=>$result
+            ];
         }
-        if(!isset($data["fullname"]))
-            $data["fullname"] = '';
-        $check = false;
-        if( mysqli_num_rows($result) > 0 ) {
-            $check = true;
-        }
-        return [
-            "check"=>$check, 
-            "fullname"=>$data["fullname"]
-        ];
-    }
+        else {
+            $token = getSecurityMD5($userExist['email'].time());
+            setcookie('token', $token, time() + 7 * 24 * 60 * 60, '/');
+            $created_at = date('Y-m-d H:i:s');
 
+            $_SESSION['user'] = $userExist;
+
+            $userId = $userExist['id'];
+            $sql = "insert into Tokens (user_id, token, created_at) values ('$userId', '$token', '$created_at')";
+            $this->execute($sql);
+            $result = true;
+            return [
+                "result"=>$result,
+                "role_id"=>$userExist["role_id"]
+            ];
+            
+        } 
+    }
 }
-
-?>

@@ -1,13 +1,12 @@
 <?php
 
-class Home extends Controller{
+class Admin extends Controller{
 
     public function __construct(){
     }
 
     function SayHi() {
-        $this->view("home",[]);
-        
+        $this->view("admin",[]);
     }
 }
 

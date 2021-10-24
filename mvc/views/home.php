@@ -7,8 +7,6 @@
             <!-- main-product -->
         </div>
 
-        <?php require_once "./mvc/views/pages/product_list.php" ?>
-
         <?php require_once "./mvc/views/blocks/footer.php" ?>
 
     </div>

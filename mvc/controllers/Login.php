@@ -1,4 +1,5 @@
 <?php
+require_once "mvc/utility/utility.php";
 
 class Login extends Controller{
 
@@ -16,23 +17,25 @@ class Login extends Controller{
        
         if( isset($_POST["btnLogin"]) ) {
             // get data
-            $username = $_POST["username"];
-            $password = $_POST["password"];
-            // $password = password_verify($password, PASSWORD_DEFAULT);
-            // insert database
-            $kq = $this->UserModel->XacNhanTaiKhoan($username, $password);
+            $email = getPost('email');
+            $password = getPost('password');
+            $password = getSecurityMD5($password);
            
+            // insert database
+            $kq = $this->UserModel->XacNhanTaiKhoan($email, $password);
+     
             // show home
-            if($kq["check"]) {
-                $this->view("home", [
-                    "result"=> $kq["check"],
-                    "fullname"=> $kq["fullname"]
-                ]);
+            
+            if($kq["result"]) {
+                if($kq["role_id"] == 1) {
+                    header('Location: http://localhost/Laptrinhweb/Home');
+                }
+                else {
+                    header('Location: http://localhost/Laptrinhweb/admin');
+                }
             }
             else {
-                $this->view("login", [
-                    "result"=> $kq["check"]
-                ]);
+                header('Location: http://localhost/Laptrinhweb/Home');
             }
 
         }

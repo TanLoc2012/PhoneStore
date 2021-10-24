@@ -9,21 +9,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="https://tokyolife.vn/media/favicon/stores/1/App_Logo_2362px-01-01.png">
-    <link rel="stylesheet" href="http://localhost/public/font/fontawesome-free-5.15.4-web/css/all.min.css">
-    <link rel="stylesheet" href="../../public/css/grid.css">
-    <link rel="stylesheet" href="../../public/css/style.css">
-    <link rel="stylesheet" href="../../public/css/base.css">
-    <link rel="stylesheet" href="../../public/css/responsive.css">
+    <link rel="stylesheet" href="http://localhost/Laptrinhweb/public/font/fontawesome-free-5.15.4-web/css/all.min.css">
+    <link rel="stylesheet" href="http://localhost/Laptrinhweb/public/css/grid.css">
+    <link rel="stylesheet" href="http://localhost/Laptrinhweb/public/css/style.css">
+    <link rel="stylesheet" href="http://localhost/Laptrinhweb/public/css/base.css">
+    <link rel="stylesheet" href="http://localhost/Laptrinhweb/public/css/responsive.css">
     <title>Web bán điện thoại</title>
 </head>
 
 <body>
 <div class="header">
-            <!-- header-bottom -->
             <div class="grid wide">
                 <div class="header-bottom">
                     <div class="header-bottom_logo">
-                        <a href="../../Home">
+                        <a href="http://localhost/Laptrinhweb/Home">
                             <img src="https://tokyolife.vn/media/logo/stores/1/LOGO-TKL-01.png" alt="">
                         </a>
                     </div>
@@ -51,29 +50,15 @@
                                     </li>
                                 </ul>
                             </div>
-
-
-
                         </div>
                         <input class="header-bottom_search-input" type="text" placeholder="Tìm kiếm...">
                         <button class="header-bottom_search-btn"><i class="fas fa-search"></i></button>
-                        <!-- <div class="header-bottom_cart reponsive">
-                            <button class="header-bottom_cart-icon header-bottom_cart-icon2">
-                                <i class="fas fa-shopping-cart"></i>
-                                <div class="header-bottom_cart-select header-bottom_cart-select2">
-                                Bạn không có sản phẩm nào trong giỏ hàng của bạn.
-                                </div>                
-                                </button>
-                            <p class="header-bottom_cart-info header-bottom_cart-info2">0 sản phẩm
-                                <br> <span>0 ₫</span> </p>
-
-                        </div> -->
                     </div>
 
                     <div class="header-bottom_cart pc">
                         <button class="header-bottom_cart-icon header-bottom_cart-icon1">
                                 <div class="header-info_about-content">
-                                    <a style="color:black;text-decoration: none;" href="../../Login">
+                                    <a style="color:black;text-decoration: none;" href="http://localhost/Laptrinhweb/Login">
                                     <?php  
                                         if(isset($data["result"]) ) {
                                             if($data["result"])
@@ -85,10 +70,10 @@
                                     </a> 
                                     <ul class="header-info_about-list">
                                         <li class="header-info_about-item">
-                                            <a href="../../Register">Đăng ký tài khoản</a>
+                                            <a href="http://localhost/Laptrinhweb/Register">Đăng ký tài khoản</a>
                                         </li>
                                         <li class="header-info_about-item">
-                                            <a href="../../Home">Đăng xuất</a>
+                                            <a href="http://localhost/Laptrinhweb/Home">Đăng xuất</a>
                                         </li>
                                         <li class="header-info_about-item">
                                             <a href="#">Đơn hàng của tôi</a>
@@ -99,7 +84,7 @@
                                     </ul>
                                 </div>
         
-                            <!-- </div> -->
+            
                         </button>
                     </div>
 
