@@ -1,5 +1,6 @@
 <?php
 	$title = 'Quản Lý Phản Hồi';
+    $isActive = "FeedbackAdmin";
 	require_once('mvc/views/blocks/header_admin.php');
 ?>
 

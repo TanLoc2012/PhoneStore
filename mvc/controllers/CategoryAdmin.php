@@ -20,7 +20,7 @@ class CategoryAdmin extends Controller{
             $name = getPost("name");
             $this->categoryModel->insertCategory($name);
         }
-        header('Location: http://localhost/Laptrinhweb/category');
+        header('Location: http://localhost/Laptrinhweb/CategoryAdmin');
     }
 
     public function updateCategoryController($id) {
@@ -38,12 +38,12 @@ class CategoryAdmin extends Controller{
             $name = getPost('name');
             $this->categoryModel->updateCategory($name, $id);
         }
-        header('Location: http://localhost/Laptrinhweb/Category');
+        header('Location: http://localhost/Laptrinhweb/CategoryAdmin');
     }
 
     public function deleteCategoryController($id) {
         $data = $this->categoryModel->selectCategoryDelete($id);
-        header('Location: http://localhost/Laptrinhweb/Category');
+        header('Location: http://localhost/Laptrinhweb/CategoryAdmin');
     }
 } 
 

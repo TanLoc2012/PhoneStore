@@ -1,6 +1,6 @@
 <?php
 	$title = 'Dashboard Page';
-	$baseUrl = '';
+	$isActive = "Dashboard";
 	require_once('blocks/header_admin.php');
 ?>
 

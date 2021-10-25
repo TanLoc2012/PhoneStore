@@ -1,3 +1,16 @@
+<?php
+    require_once "mvc/utility/utility.php";
+    $user = getUserToken();
+    if($user != null) {
+        if($user["role_id"] == 1) {
+            header('Location: http://localhost/Laptrinhweb/Home');
+        }
+        else {
+            header('Location: http://localhost/Laptrinhweb/admin');
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

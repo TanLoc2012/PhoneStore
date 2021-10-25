@@ -14,35 +14,44 @@ class Login extends Controller{
     }
 
     public function UserLogin() {
-       
+
         if( isset($_POST["btnLogin"]) ) {
             // get data
             $email = getPost('email');
             $password = getPost('password');
             $password = getSecurityMD5($password);
            
-            // insert database
+            
             $kq = $this->UserModel->XacNhanTaiKhoan($email, $password);
      
             // show home
-            
+           
             if($kq["result"]) {
                 if($kq["role_id"] == 1) {
                     header('Location: http://localhost/Laptrinhweb/Home');
+
                 }
                 else {
                     header('Location: http://localhost/Laptrinhweb/admin');
                 }
             }
             else {
-                header('Location: http://localhost/Laptrinhweb/Home');
+                header('Location: http://localhost/Laptrinhweb/Login');
             }
 
         }
     }
 
     public function UserLogout() {
-        $this->view("home", []);
+        $user = getUserToken();
+        if($user != null) {
+            $token = getCookie('token');
+            $id = $user['id'];
+            $this->UserModel->deleteToken($id, $token);
+            setcookie('token', '', time() - 100, '/');
+        }
+        session_destroy();
+        header('Location: http://localhost/Laptrinhweb/Home');
     }
 }
 

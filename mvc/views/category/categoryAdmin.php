@@ -1,5 +1,6 @@
 <?php
 	$title = 'Quản Lý Danh Mục Sản Phẩm';
+	$isActive = "CategoryAdmin";
 	require_once('mvc/views/blocks/header_admin.php');
 ?>
 
@@ -8,7 +9,7 @@
 		<h3>Quản Lý Danh Mục Sản Phẩm</h3>
 	</div>
 	<div class="col-md-6">
-		<form method="post" action="http://localhost/Laptrinhweb/Category/insertCategoryController">
+		<form method="post" action="http://localhost/Laptrinhweb/CategoryAdmin/insertCategoryController">
 			<div class="form-group">
 			  <label for="usr" style="font-weight: bold;">Tên Danh Mục:</label>
 			  <input required="true" type="text" class="form-control" id="usr" name="name">
@@ -34,10 +35,10 @@
 					<th>'.($i).'</th>
 					<td>'.$data["category"][$i]['name'].'</td>
 					<td style="width: 50px">
-						<a href="http://localhost/Laptrinhweb/Category/updateCategoryController/'.$data["category"][$i]["id"].'"><button class="btn btn-warning">Sửa</button></a>
+						<a href="http://localhost/Laptrinhweb/CategoryAdmin/updateCategoryController/'.$data["category"][$i]["id"].'"><button class="btn btn-warning">Sửa</button></a>
 					</td>
 					<td style="width: 50px">
-					<a href="http://localhost/Laptrinhweb/Category/deleteCategoryController/'.$data["category"][$i]["id"].'"><button class="btn btn-danger">Xóa</button></a>
+					<a href="http://localhost/Laptrinhweb/CategoryAdmin/deleteCategoryController/'.$data["category"][$i]["id"].'"><button class="btn btn-danger">Xóa</button></a>
 					</td>
 				</tr>';
 	}

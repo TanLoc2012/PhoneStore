@@ -1,5 +1,6 @@
 <?php
 	$title = 'Thông Tin Chi Tiết Đơn Hàng';
+    $isActive = "OrderAdmin";
 	require_once('mvc/views/blocks/header_admin.php');
 ?>
 

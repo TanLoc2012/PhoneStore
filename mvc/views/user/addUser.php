@@ -1,5 +1,6 @@
 <?php
 	$title = 'Thêm Tài Khoản Người Dùng';
+	$isActive = "UserAdmin";
 	require_once('mvc/views/blocks/header_admin.php');
 ?>
 

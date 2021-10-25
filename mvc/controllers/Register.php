@@ -26,16 +26,12 @@ class Register extends Controller{
 
             // insert database
             $kq = $this->UserModel->InsertNewUser($fullname, $email, $password, $phone_number, $address);
-          
+            var_dump($kq["result"]);
             // show home
             if($kq["result"]) {
-                $this->view("home", []);
+                header('Location: http://localhost/Laptrinhweb/Login');
             }
-            else $this->view("register", [
-                "result"=> $kq["result"]
-            ]);;
-
-            
+            else header('Location: http://localhost/Laptrinhweb/Register');
         }
     }
 }

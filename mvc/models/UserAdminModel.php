@@ -32,6 +32,7 @@ class UserAdminModel extends DB{
             return false;
         }
         if($password != '' && strlen($password >= 6)){
+            $password = getSecurityMD5($password);
             $sql = "update user set fullname = '$fullname', email = '$email', phone_number = '$phone_number', address = '$address', password = '$password', role_id = $role_id where id = $id";      
         }
         else $sql = "update user set fullname = '$fullname', email = '$email', phone_number = '$phone_number', address = '$address', role_id = $role_id where id = $id";

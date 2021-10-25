@@ -1,5 +1,6 @@
 <?php
 	$title = 'Quản Lý Sản Phẩm';
+    $isActive = "ProductAdmin";
 	require_once('mvc/views/blocks/header_admin.php');
 ?>
 <div class="row" style="margin-top: 20px;">

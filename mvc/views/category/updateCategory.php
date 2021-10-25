@@ -1,5 +1,6 @@
 <?php
 	$title = 'Quản Lý Danh Mục Sản Phẩm';
+	$isActive = "CategoryAdmin";
 	require_once('mvc/views/blocks/header_admin.php');
 ?>
 
@@ -8,7 +9,7 @@
 		<h3>Quản Lý Danh Mục Sản Phẩm</h3>
 	</div>
 	<div class="col-md-6">
-		<form method="post" action="http://localhost/Laptrinhweb/Category/doupdateCategoryController">
+		<form method="post" action="http://localhost/Laptrinhweb/CategoryAdmin/doupdateCategoryController">
 			<div class="form-group">
 			  <label for="usr" style="font-weight: bold;">Sửa tên Danh Mục:</label>
 			  <input required="true" type="text" class="form-control" id="usr" name="name" value="<?=$data["name"]?>">

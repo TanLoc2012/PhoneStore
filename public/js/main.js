@@ -1,383 +1,536 @@
-const headerLocation = document.querySelector('.header-location-js')
-const modalPlace = document.querySelector('.modal-place')
-const modalPlaceContent = document.querySelector('.modal-place_container')
-const modalRegions = document.querySelectorAll('.modal-place_regions-content')
-const modalRegionsIcon = document.querySelectorAll('.modal-place_regions-content>i')
-const modalRegionsLists = document.querySelectorAll('.modal-place_regions-list')
-const cart = document.querySelector('.header-bottom_cart.pc')
-const cart2 = document.querySelector('.header-bottom_cart.reponsive')
-const cartBtn = document.querySelector('.header-bottom_cart-icon1')
-const cartBtn2 = document.querySelector('.header-bottom_cart-icon2')
-const cartSelect = document.querySelector('.header-bottom_cart-select1')
-const cartSelect2 = document.querySelector('.header-bottom_cart-select2')
+/*--------------------------------------------------
+Template Name: limupa;
+Description: limupa - Digital Products Store ECommerce Bootstrap 4 Template;
+Template URI:;
+Author Name:HasTech;
+Author URI:;
+Version: 1;
+Note: main.js, All Default Scripting Languages For This Theme Included In This File.
+-----------------------------------------------------
+		CSS INDEX
+		================
+		01. Li's Meanmenu
+		02. Header Dropdown
+		03. Li's Sticky Menu Activation
+		04. Nice Select
+		05. Main Slider Activision
+		06. Li's Product Activision
+		07. Li's Product Activision
+		08. Countdown
+		09. Tooltip Active
+		10. Scroll Up
+		11. Category Menu
+		12. Li's Product Activision
+		13. FAQ Accordion
+		14. Toggle Function Active
+		15. Li's Blog Gallery Slider
+		16. Counter Js
+		17. Price slider
+		18. Category menu Activation
+		19. Featured Product active
+		20. Featured Product 2 active
+		21. Modal Menu Active
+		22. Cart Plus Minus Button
+		23. Single Prduct Carousel Activision
+		24. Star Rating Js
+		25. Zoom Product Venobox
+		26. WOW
 
-const sliderImgs = document.querySelectorAll('.slider-img')
-const sliderNext = document.querySelector('.slider-next')
-const sliderPrev = document.querySelector('.slider-prev')
-const sliderRadios = document.querySelectorAll('.slider-radio_item')
-const productProposeTitles = document.querySelectorAll('.product-propose_title-name')
-const productProposeNews = document.querySelectorAll('.product-propose_new')
-const line = document.querySelector('.line')
-const productNext = document.querySelector('.product-propose_next')
-const productPrev = document.querySelector('.product-propose_prev')
-const widthProductItem = document.querySelector('.product-propose_new.active>.row-nowrap>.col')
-const productProposeItems = document.querySelectorAll('.product-propose_new.active>.row-nowrap>.col')
-const fixedForm = document.querySelector('.fixed-form')
-const btnMessage = document.querySelector('.btn-message')
-const hideIcon = document.querySelector('.fixed-form_header i')
-const hideBtn = document.querySelector('.fixed-btn_group-item:first-child')
-const btnSrollFixed = document.querySelector('.btn-srollFixed')
-
-
-let positionX = 0
-let index = 0
-
-
-// showModal................................................................
-function showModalPlace() {
-    headerLocation.addEventListener('click', () => {
-        modalPlace.classList.add('open')
+-----------------------------------------------------------------------------------*/
+(function ($) {
+	"use Strict";
+/*----------------------------------------*/
+/* 	01. Li's Meanmenu
+/*----------------------------------------*/
+    jQuery('.hb-menu nav').meanmenu({
+        meanMenuContainer: '.mobile-menu',
+        meanScreenWidth: "991"
     })
-}
+ /*----------------------------------------*/
+ /*  02. Header Dropdown
+ /*----------------------------------------*/
+ 	// Li's Dropdown Menu
+ 	$('.ht-setting-trigger, .ht-currency-trigger, .ht-language-trigger, .hm-minicart-trigger, .cw-sub-menu').on('click', function (e) {
+ 		e.preventDefault();
+ 		$(this).toggleClass('is-active');
+ 		$(this).siblings('.ht-setting, .ht-currency, .ht-language, .minicart, .cw-sub-menu li').slideToggle();
+ 	});
+ 	$('.ht-setting-trigger.is-active').siblings('.catmenu-body').slideDown();
+/*----------------------------------------*/
+/* 03. Li's Sticky Menu Activation
+/*----------------------------------------*/
+	$(window).on('scroll',function() {
+		if ($(this).scrollTop() > 300) {
+			$('.header-sticky').addClass("sticky");
+		} else {
+			$('.header-sticky').removeClass("sticky");
+		}
+	});
+/*----------------------------------------*/
+/*  04. Nice Select
+/*----------------------------------------*/
+	$(document).ready(function() {
+		$('.nice-select').niceSelect();
+	});
+/*----------------------------------------*/
+/* 05. Main Slider Activision
+/*----------------------------------------*/
+	$(".slider-active").owlCarousel({
+		loop: true,
+		margin: 0,
+		nav: true,
+		autoplay: true,
+		items: 1,
+		autoplayTimeout: 10000,
+		navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+		dots: true,
+		autoHeight: true,
+		lazyLoad: true
+	});
+/*----------------------------------------*/
+/* 06. Li's Product Activision
+/*----------------------------------------*/
+	$(".product-active").owlCarousel({
+		loop: true,
+		nav: true,
+		dots: false,
+		autoplay: false,
+		autoplayTimeout: 5000,
+		navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"],
+		item: 5,
+		responsive: {
+			0: {
+					items: 1
+			},
+			480: {
+					items: 2
+			},
+			768: {
+					items: 3
+			},
+			992: {
+					items: 4
+			},
+			1200: {
+					items: 5
+			}
+		}
+	});
+/*----------------------------------------*/
+/* 07. Li's Product Activision
+/*----------------------------------------*/
+	$(".special-product-active").owlCarousel({
+		loop: true,
+		nav: false,
+		dots: false,
+		autoplay: false,
+		autoplayTimeout: 5000,
+		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-left"></i>'],
+		item: 4,
+		responsive: {
+			0: {
+					items: 1
+			},
+			480: {
+					items: 1
+			},
+			768: {
+					items: 2
+			},
+			992: {
+					items: 3
+			},
+			1200: {
+					items: 4
+			}
+		}
+	});
+/*----------------------------------------*/
+/* 08. Countdown
+/*----------------------------------------*/
+   $(".li-countdown")
+     .countdown("2019/12/01", function(event) {
+       $(this).html(
+         event.strftime('<div class="count">%D <span>Days:</span></div> <div class="count">%H <span>Hours:</span></div> <div class="count">%M <span>Mins:</span></div><div class="count"> %S <span>Secs</span></div>')
+       );
+     });
+/*----------------------------------------*/
+/* 09. Tooltip Active
+/*----------------------------------------*/
+	$('.product-action a, .social-link a').tooltip({
+		animated: 'fade',
+		placement: 'top',
+		container: 'body'
+	});
+/*----------------------------------------*/
+/* 10. Scroll Up
+/*----------------------------------------*/
+	$.scrollUp({
+		scrollText: '<i class="fa fa-angle-double-up"></i>',
+		easingType: 'linear',
+		scrollSpeed: 900
+	});
+/*----------------------------------------*/
+/* 11. Category Menu
+/*----------------------------------------*/
+	 $('.rx-parent').on('click', function(){
+	    $('.rx-child').slideToggle();
+	    $(this).toggleClass('rx-change');
+	});
+	//    category heading
+	$('.category-heading').on('click', function(){
+	    $('.category-menu-list').slideToggle(300);
+	});	
+	/*-- Category Menu Toggles --*/
+	function categorySubMenuToggle() {
+	    var screenSize = $(window).width();
+	    if ( screenSize <= 991) {
+	        $('#cate-toggle .right-menu > a').prepend('<i class="expand menu-expand"></i>');
+	        $('.category-menu .right-menu ul').slideUp();
+	//        $('.category-menu .menu-item-has-children i').on('click', function(e){
+	//            e.preventDefault();
+	//            $(this).toggleClass('expand');
+	//            $(this).siblings('ul').css('transition', 'none').slideToggle();
+	//        })
+	    } else {
+	        $('.category-menu .right-menu > a i').remove();
+	        $('.category-menu .right-menu ul').slideDown();
+	    }
+	}
+	categorySubMenuToggle();
+	$(window).resize(categorySubMenuToggle);
 
+	/*-- Category Sub Menu --*/
+	function categoryMenuHide(){
+	    var screenSize = $(window).width();
+	    if ( screenSize <= 991) {
+	        $('.category-menu-list').hide();
+	    } else {
+	        $('.category-menu-list').show();
+	    }
+	}
+	categoryMenuHide();
+	$(window).resize(categoryMenuHide);
+	$('.category-menu-hidden').find('.category-menu-list').hide();
+	$('.category-menu-list').on('click', 'li a, li a .menu-expand', function(e) {
+	    var $a = $(this).hasClass('menu-expand') ? $(this).parent() : $(this);
+	    if ($a.parent().hasClass('right-menu')) {
+	        if ($a.attr('href') === '#' || $(this).hasClass('menu-expand')) {
+	            if ($a.siblings('ul:visible').length > 0) $a.siblings('ul').slideUp();
+	            else {
+	                $(this).parents('li').siblings('li').find('ul:visible').slideUp();
+	                $a.siblings('ul').slideDown();
+	            }
+	        }
+	    }
+	    if ($(this).hasClass('menu-expand') || $a.attr('href') === '#') {
+	        e.preventDefault();
+	        return false;
+	    }
+	});
+/*----------------------------------------*/
+/* 12. Li's Product Activision
+/*----------------------------------------*/
+	$(".li-featured-product-active").owlCarousel({
+		loop: true,
+		nav: false,
+		dots: false,
+		margin: 30,
+		autoplay: false,
+		autoplayTimeout: 5000,
+		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-left"></i>'],
+		item: 2,
+		responsive: {
+			0: {
+				items: 1
+			},
+			480: {
+				items: 2
+			},
+			768: {
+				items: 2
+			},
+			992: {
+				items: 2
+			},
+			1200: {
+				items: 2
+			}
+		 }
+	 });
+/*----------------------------------------*/
+/* 13. FAQ Accordion
+/*----------------------------------------*/
+	$('.card-header a').on('click', function() {
+		 $('.card').removeClass('actives');
+		 $(this).parents('.card').addClass('actives');
+	});
+/*----------------------------------------*/
+/* 14. Toggle Function Active
+/*----------------------------------------*/ 
+	// showlogin toggle
+		$('#showlogin').on('click', function() {
+				$('#checkout-login').slideToggle(900);
+		});
+	// showlogin toggle
+		$('#showcoupon').on('click', function() {
+				$('#checkout_coupon').slideToggle(900);
+		});
+	// showlogin toggle
+		$('#cbox').on('click', function() {
+				$('#cbox-info').slideToggle(900);
+		});
 
-//showListRegions................................................................
-function showlists() {
-    modalRegions[0].addEventListener('click', () => {
-        modalRegionsLists[0].classList.toggle('open')
-        modalRegionsIcon[0].classList.toggle('roteArrow')
-        modalRegionsLists[1].classList.remove('open')
-        modalRegionsIcon[1].classList.remove('roteArrow')
-        modalRegionsLists[2].classList.remove('open')
-        modalRegionsIcon[2].classList.remove('roteArrow')
-
-
-    })
-    modalRegions[1].addEventListener('click', () => {
-        modalRegionsLists[1].classList.toggle('open')
-        modalRegionsIcon[1].classList.toggle('roteArrow')
-        modalRegionsLists[0].classList.remove('open')
-        modalRegionsIcon[0].classList.remove('roteArrow')
-        modalRegionsLists[2].classList.remove('open')
-        modalRegionsIcon[2].classList.remove('roteArrow')
-
-    })
-    modalRegions[2].addEventListener('click', () => {
-        modalRegionsLists[2].classList.toggle('open')
-        modalRegionsIcon[2].classList.toggle('roteArrow')
-        modalRegionsLists[1].classList.remove('open')
-        modalRegionsIcon[1].classList.remove('roteArrow')
-        modalRegionsLists[0].classList.remove('open')
-        modalRegionsIcon[0].classList.remove('roteArrow')
-
-    })
-}
-// hideModal.....................................................................
-function hideModalPlace() {
-    modalPlace.addEventListener('click', () => {
-        modalPlace.classList.remove('open')
-
-    })
-}
-
-function stopPropagationModal() {
-    modalPlaceContent.addEventListener('click', (e) => {
-        e.stopPropagation()
-    })
-}
-
-// showCart..............................................................
-function clickCart() {
-    cart.addEventListener('click', () => {
-        cartSelect.classList.toggle('openFlex')
-        cartBtn.classList.toggle('onClickCart')
-    })
-    cart2.addEventListener('click', () => {
-        cartSelect2.classList.toggle('openFlex')
-        cartBtn2.classList.toggle('onClickCart')
-    })
-}
-
-// changeslideProduce..............................................................
-
-function changeSlideProduct() {
-    // changeTitleAndProduce................................................................
-
-    (function changeTitleAndProduct() {
-        const productProposeTitleActive = document.querySelector('.product-propose_title-name.active')
-        line.style.left = productProposeTitleActive.offsetLeft + 'px'
-        line.style.width = productProposeTitleActive.offsetWidth + 'px'
-
-        productProposeTitles.forEach((productProposeTitle, index) => {
-            const productProposeNew = productProposeNews[index]
-
-            productProposeTitle.onclick = () => {
-                const productProposeTitleActive = document.querySelector('.product-propose_title-name.active')
-                productProposeTitleActive.classList.remove('active')
-                const productProposeNewActive = document.querySelector('.product-propose_new.active')
-                productProposeNewActive.classList.remove('active')
-
-                line.style.left = productProposeTitle.offsetLeft + 'px'
-                line.style.width = productProposeTitle.offsetWidth + 'px'
-
-                productProposeTitle.classList.add('active')
-                productProposeNew.classList.add('active')
-
-            }
-        })
-    })()
-
-
-
-
-    const nextSlideProduct = () => {
-        indexProduct++
-        tranformX = tranformX - 100
-
-        if (indexProduct > productProposeItems.length - 4) {
-            indexProduct = productProposeItems.length - 4
-            tranformX = -100 * indexProduct
-            return
+	// showlogin toggle
+		$('#ship-box').on('click', function() {
+				$('#ship-box-info').slideToggle(1000);
+		});
+/*----------------------------------------*/
+/* 15. Li's Blog Gallery Slider
+/*----------------------------------------*/ 
+	var gallery = $('.li-blog-gallery-slider');
+	gallery.slick({
+		arrows: false,
+		autoplay: true,
+		autoplaySpeed: 5000,
+		pauseOnFocus: false,
+		pauseOnHover: false,
+		fade: true,
+		dots: true,
+		infinite: true,
+		slidesToShow: 1,
+		responsive: [
+			{
+				breakpoint: 768,
+					settings: {
+						arrows: false,
+				}
+			},
+		]
+	});
+/*----------------------------------------*/
+/* 16. Counter Js
+/*----------------------------------------*/
+    $('.counter').counterUp({
+        delay: 10,
+        time: 1000
+    });
+/*----------------------------------------*/
+/* 17. Price slider
+/*----------------------------------------*/
+ var sliderrange = $('#slider-range');
+ var amountprice = $('#amount');
+ $(function() {
+     sliderrange.slider({
+         range: true,
+         min: 0,
+         max: 1200,
+         values: [300, 800],
+         slide: function(event, ui) {
+             amountprice.val("$" + ui.values[0] + " - $" + ui.values[1]);
+         }
+     });
+     amountprice.val("$" + sliderrange.slider("values", 0) +
+         " - $" + sliderrange.slider("values", 1));
+ });
+ /*----------------------------------------*/
+ /* 18. Category menu Activation
+ /*----------------------------------------*/
+ $('.category-sub-menu li.has-sub > a').on('click', function () {
+     $(this).removeAttr('href');
+     var element = $(this).parent('li');
+     if (element.hasClass('open')) {
+         element.removeClass('open');
+         element.find('li').removeClass('open');
+         element.find('ul').slideUp();
+     } else {
+         element.addClass('open');
+         element.children('ul').slideDown();
+         element.siblings('li').children('ul').slideUp();
+         element.siblings('li').removeClass('open');
+         element.siblings('li').find('li').removeClass('open');
+         element.siblings('li').find('ul').slideUp();
+     }
+ });
+ /*----------------------------------------*/
+ /* 19. Featured Product active
+ /*----------------------------------------*/
+ $('.featured-product-active').owlCarousel({
+     loop: true,
+     nav: true,
+     autoplay: false,
+     autoplayTimeout: 5000,
+     navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
+     item: 3,
+     responsive: {
+        0: {
+            items: 1
+        },
+        768: {
+            items: 2
+        },
+        992: {
+            items: 2
+        },
+        1100: {
+            items: 2
+        },
+        1200: {
+            items: 2
         }
-
-        for (const productProposeItem of productProposeItems) {
-            productProposeItem.style.transform = `translateX(${tranformX}%)`
+    }
+ })
+/*----------------------------------------*/
+/* 20. Featured Product 2 active
+/*----------------------------------------*/
+ $('.featured-product-active-2').owlCarousel({
+     loop: true,
+     nav: true,
+     autoplay: false,
+     autoplayTimeout: 5000,
+     navText: ['<i class="ion-ios-arrow-back"></i>', '<i class="ion-ios-arrow-forward"></i>'],
+     item: 3,
+     responsive: {
+        0: {
+            items: 1
+        },
+        768: {
+            items: 2
+        },
+        992: {
+            items: 1
+        },
+        1100: {
+            items: 1
+        },
+        1200: {
+            items: 1
         }
     }
-    setInterval(nextSlideProduct, 10000)
-
-    // nextProduct................................................................
-    productNext.addEventListener('click', () => {
-        handleChangeProduct(1)
-    })
-
-    //prevProduct................................................................
-    productPrev.addEventListener('click', () => {
-            handleChangeProduct(-1)
-        })
-        // handleChangeProduct................................................................
-    let indexProduct = 0
-    let tranformX = 0
-        // autoChangeProduct................................................................
-    function handleChangeProduct(e) {
-        if (e == 1) {
-            nextSlideProduct()
-
-        } else if (e == -1) {
-            indexProduct--
-            tranformX = tranformX + 100
-
-            if (indexProduct < 0) {
-                tranformX = 0
-                indexProduct = 0
-                return
-            }
-            for (const productProposeItem of productProposeItems) {
-                productProposeItem.style.transform = `translateX(${tranformX}%)`
-            }
-
-        }
-
-    }
-
-
-}
-
-
-
-function changeMainProduct() {
-    // mainProduct1..............................................................
-    function changeMainProduct1() {
-
-        const productMains = document.querySelectorAll('#product1.product-content_about.product-propose_new')
-        const productMainTitles = document.querySelectorAll('#title1.product-change-title')
-
-
-        productMainTitles.forEach((productMainTitle, index) => {
-
-            const productMain = productMains[index]
-
-            productMainTitle.onclick = () => {
-                const productMainTitlesActive = document.querySelector('#title1.product-change-title.active')
-                const productMainsActive = document.querySelector('#product1.product-content_about.product-propose_new.active')
-                productMainTitlesActive.classList.remove('active')
-                productMainsActive.classList.remove('active')
-
-                productMainTitle.classList.add('active')
-                productMain.classList.add('active')
-
-            }
-        })
-    }
-    changeMainProduct1()
-
-    // mainProduct2..............................................................
-
-    function changeMainProduct2() {
-
-
-        const productMains = document.querySelectorAll('#product2.product-content_about.product-propose_new')
-        const productMainTitles = document.querySelectorAll('#title2.product-change-title')
-
-        productMainTitles.forEach((productMainTitle, index) => {
-
-            const productMain = productMains[index]
-
-            productMainTitle.onclick = () => {
-                const productMainTitlesActive = document.querySelector('#title2.product-change-title.active')
-                productMainTitlesActive.classList.remove('active')
-                const productMainsActive = document.querySelector('#product2.product-content_about.product-propose_new.active')
-                productMainsActive.classList.remove('active')
-
-                productMainTitle.classList.add('active')
-                productMain.classList.add('active')
-
-            }
-        })
-    }
-    changeMainProduct2()
-
-    // mainProduct3..............................................................
-
-    function changeMainProduct3() {
-
-
-        const productMains = document.querySelectorAll('#product3.product-content_about.product-propose_new')
-        const productMainTitles = document.querySelectorAll('#title3.product-change-title')
-
-        productMainTitles.forEach((productMainTitle, index) => {
-
-            const productMain = productMains[index]
-
-            productMainTitle.onclick = () => {
-                const productMainTitlesActive = document.querySelector('#title3.product-change-title.active')
-                productMainTitlesActive.classList.remove('active')
-                const productMainsActive = document.querySelector('#product3.product-content_about.product-propose_new.active')
-                productMainsActive.classList.remove('active')
-
-                productMainTitle.classList.add('active')
-                productMain.classList.add('active')
-
-            }
-        })
-    }
-    changeMainProduct3()
-
-    // mainProduct4..............................................................
-
-    function changeMainProduct4() {
-
-
-        const productMains = document.querySelectorAll('#product4.product-content_about.product-propose_new')
-        const productMainTitles = document.querySelectorAll('#title4.product-change-title')
-
-        productMainTitles.forEach((productMainTitle, index) => {
-
-            const productMain = productMains[index]
-
-            productMainTitle.onclick = () => {
-                const productMainTitlesActive = document.querySelector('#title4.product-change-title.active')
-                productMainTitlesActive.classList.remove('active')
-                const productMainsActive = document.querySelector('#product4.product-content_about.product-propose_new.active')
-                productMainsActive.classList.remove('active')
-
-                productMainTitle.classList.add('active')
-                productMain.classList.add('active')
-
-            }
-        })
-    }
-    changeMainProduct4()
-
-    // mainProduct5..............................................................
-
-    function changeMainProduct5() {
-
-
-        const productMains = document.querySelectorAll('#product5.product-content_about.product-propose_new')
-        const productMainTitles = document.querySelectorAll('#title5.product-change-title')
-
-        productMainTitles.forEach((productMainTitle, index) => {
-
-            const productMain = productMains[index]
-
-            productMainTitle.onclick = () => {
-                const productMainTitlesActive = document.querySelector('#title5.product-change-title.active')
-                productMainTitlesActive.classList.remove('active')
-                const productMainsActive = document.querySelector('#product5.product-content_about.product-propose_new.active')
-                productMainsActive.classList.remove('active')
-
-                productMainTitle.classList.add('active')
-                productMain.classList.add('active')
-
-            }
-        })
-    }
-    changeMainProduct5()
-}
-
-// fadeAndHideForm..............................................................
-function fadeAndHideForm() {
-    btnMessage.addEventListener('click', () => {
-        fixedForm.classList.toggle('open')
-    })
-    hideIcon.addEventListener('click', () => {
-        fixedForm.classList.remove('open')
-    })
-    hideBtn.addEventListener('click', () => {
-        fixedForm.classList.remove('open')
-    })
-}
-// onScrollBtn..............................................................
-function onScrollBtn() {
-    window.onscroll = () => {
-        if (window.scrollY >= 150) {
-            btnSrollFixed.style.transform = 'translateY(0)'
-
-        } else {
-            btnSrollFixed.style.transform = `translateY(100px)`
-
-        }
-    }
-}
-
-// menuResponsive..............................................................
-function menuResponsive() {
-    const menuBtn = document.querySelector('.header-bottom_menu-icon')
-    const exitMenu = document.querySelector('.nav-list_responsive-icon')
-    const overlayMenu = document.querySelector('.header-bottom_menu-list')
-    const menuResponsive = document.querySelector('.nav-list_responsive')
-
-    menuBtn.addEventListener('click', () => {
-        overlayMenu.style.transform = `translateX(0)`
-
-    })
-    exitMenu.addEventListener('click', () => {
-        overlayMenu.style.transform = `translateX(-100%)`
-
-    })
-    overlayMenu.addEventListener('click', () => {
-        overlayMenu.style.transform = `translateX(-100%)`
-    })
-
-    function stopPropagationModal() {
-        menuResponsive.addEventListener('click', (e) => {
-            e.stopPropagation()
-        })
-    }
-    stopPropagationModal()
-}
-
-
-// callFunction..............................................................
-showModalPlace()
-showlists()
-hideModalPlace()
-stopPropagationModal()
-clickCart()
-changeSlider()
-changeSlideProduct()
-changeMainProduct()
-fadeAndHideForm()
-onScrollBtn()
-menuResponsive()
+ })
+ /*----------------------------------------*/
+ /* 21. Modal Menu Active
+ /*----------------------------------------*/ 
+ $('.product-details-images').each(function(){
+     var $this = $(this);
+     var $thumb = $this.siblings('.product-details-thumbs, .tab-style-left');
+     $this.slick({
+        arrows: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 5000,
+        dots: false,
+        infinite: true,
+        centerMode: false,
+        centerPadding: 0,
+        asNavFor: $thumb,
+    });
+ });
+ $('.product-details-thumbs').each(function(){
+     var $this = $(this);
+     var $details = $this.siblings('.product-details-images');
+     $this.slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 5000,
+        dots: false,
+        infinite: true,
+        focusOnSelect: true,
+        centerMode: true,
+        centerPadding: 0,
+        prevArrow: '<span class="slick-prev"><i class="fa fa-angle-left"></i></span>',
+        nextArrow: '<span class="slick-next"><i class="fa fa-angle-right"></i></span>',
+        asNavFor: $details,
+    });
+ });
+ $('.tab-style-left, .tab-style-right').each(function(){
+     var $this = $(this);
+     var $details = $this.siblings('.product-details-images');
+     $this.slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 5000,
+        dots: false,
+        infinite: true,
+        focusOnSelect: true,
+        vertical: true,
+        centerPadding: 0,
+        prevArrow: '<span class="slick-prev"><i class="fa fa-angle-down"></i></span>',
+        nextArrow: '<span class="slick-next"><i class="fa fa-angle-up"></i></span>',
+        asNavFor: $details,
+    });
+ });
+/*----------------------------------------*/
+/* 22. Cart Plus Minus Button
+/*----------------------------------------*/
+ $(".cart-plus-minus").append('<div class="dec qtybutton"><i class="fa fa-angle-down"></i></div><div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>');
+ $(".qtybutton").on("click", function() {
+    var $button = $(this);
+    var oldValue = $button.parent().find("input").val();
+    if ($button.hasClass('inc')) {
+       var newVal = parseFloat(oldValue) + 1;
+    } else {
+        // Don't allow decrementing below zero
+       if (oldValue > 0) {
+         var newVal = parseFloat(oldValue) - 1;
+         } else {
+         newVal = 0;
+       }
+       }
+    $button.parent().find("input").val(newVal);
+   });
+/*----------------------------------------*/
+/* 23. Single Prduct Carousel Activision
+/*----------------------------------------*/
+ 	$(".sp-carousel-active").owlCarousel({
+ 		loop: true,
+ 		nav: false,
+ 		dots: false,
+ 		autoplay: false,
+ 		autoplayTimeout: 5000,
+ 		navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-left"></i>'],
+ 		item: 4,
+ 		responsive: {
+ 			0: {
+ 					items: 1
+ 			},
+ 			480: {
+ 					items: 2
+ 			},
+ 			768: {
+ 					items: 2
+ 			},
+ 			992: {
+ 					items: 3
+ 			},
+ 			1200: {
+ 					items: 4
+ 			}
+ 		}
+ 	});
+/*----------------------------------------*/
+/* 24. Star Rating Js
+/*----------------------------------------*/
+    $(function() {
+          $('.star-rating').barrating({
+            theme: 'fontawesome-stars'
+        });
+    });
+/*----------------------------------------*/
+/* 25. Zoom Product Venobox
+/*----------------------------------------*/
+    $('.venobox').venobox({
+        spinner:'wave',
+        spinColor:'#cb9a00',
+    });
+/*----------------------------------------*/
+/* 26. WOW
+/*----------------------------------------*/
+    new WOW().init();
+})(jQuery);
+/*----------------------------------------------------------------------------------------------------*/
+/*------------------------------------------> The End <-----------------------------------------------*/
+/*----------------------------------------------------------------------------------------------------*/

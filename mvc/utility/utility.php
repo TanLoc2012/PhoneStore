@@ -1,4 +1,5 @@
 <?php
+require_once "mvc/core/config.php";
 function fixSqlInject($sql) {
 	$sql = str_replace('\\', '\\\\', $sql);
 	$sql = str_replace('\'', '\\\'', $sql);
@@ -45,17 +46,34 @@ function getSecurityMD5($pwd) {
 	return md5(md5($pwd).PRIVATE_KEY);
 }
 
+function executeResultU($sql) {
+	$data = null;
+
+	//open connection
+	$conn = mysqli_connect(HOST, USERNAME, PASSWORD, DATABASE);
+	mysqli_set_charset($conn, 'utf8');
+
+	//query
+	$resultset = mysqli_query($conn, $sql);
+	if($resultset){
+		$data = mysqli_fetch_array($resultset, 1);
+		//close connection
+		mysqli_close($conn);
+	}
+	return $data;
+}
+
 function getUserToken() {
 	if(isset($_SESSION['user'])) {
 		return $_SESSION['user'];
 	}
 	$token = getCookie('token');
-	$sql = "select * from Tokens where token = '$token'";
-	$item = executeResult($sql, true);
+	$sql = "select * from tokens where token = '$token'";
+	$item = executeResultU($sql);
 	if($item != null) {
 		$userId = $item['user_id'];
-		$sql = "select * from User where id = '$userId' and deleted = 0";
-		$item = executeResult($sql, true);
+		$sql = "select * from user where id = '$userId' and deleted = 0";
+		$item = executeResultU($sql);
 		if($item != null) {
 			$_SESSION['user'] = $item;
 			return $item;
@@ -65,22 +83,7 @@ function getUserToken() {
 	return null;
 }
 
-function moveFile($key, $rootPath = "http://localhost/Laptrinhweb/public/images/") {
-	if(!isset($_FILES[$key]) || !isset($_FILES[$key]['name']) || $_FILES[$key]['name'] == '') {
-		return '';
-	}
 
-	$pathTemp = $_FILES[$key]["tmp_name"];
-
-	$filename = $_FILES[$key]['name'];
-	//filename -> remove special character, ..., ...
-
-	$newPath="".$filename;
-
-	move_uploaded_file($pathTemp, $rootPath.$newPath);
-
-	return $newPath;
-}
 
 function fixUrl($thumbnail, $rootPath = "http://localhost/Laptrinhweb/public/images/") {
 	if(stripos($thumbnail, 'http://') !== false || stripos($thumbnail, 'https://') !== false) {

@@ -1,5 +1,6 @@
 <?php
 	$title = 'Quản Lý Người Dùng';
+	$isActive = "UserAdmin";
 	require_once('mvc/views/blocks/header_admin.php');
 ?>
 

@@ -1,15 +1,13 @@
 <?php
-  // session_start();
-  require_once('mvc/utility/utility.php');
-  // require_once($baseUrl.'../database/dbhelper.php');
-
-  // $user = getUserToken();
-  // if($user == null) {
-  //   header('Location: '.$baseUrl.'authen/login.php');
-  //   die();
-  // }
+    require_once "mvc/utility/utility.php";
+    $user = getUserToken();
+    if($user != null) {
+        if($user["role_id"] == 1) {
+            header('Location: http://localhost/Laptrinhweb/Home');
+        }
+    }
+    // header('Location: http://localhost/Laptrinhweb/Login');
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +34,7 @@
 </head>
 <body>
 <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">GokiSoft</a>
+  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="http://localhost/Laptrinhweb/Home">PhoneStore</a>
   <input class="form-control form-control-dark w-100" type="text" placeholder="Tìm kiếm" aria-label="Search">
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
@@ -50,37 +48,69 @@
       <div class="sidebar-sticky">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active" href="http://localhost/Laptrinhweb/">
+            <a class="nav-link 
+            <?php if(isset($isActive)) {
+                    if($isActive=='Dashboard')
+                      echo 'active';
+                    else echo '';
+            }
+            ?>"
+             href="http://localhost/Laptrinhweb/Admin">
               <i class="bi bi-house-fill"></i>
               Dashboard
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/Laptrinhweb/categoryAdmin">
+            <a class="nav-link <?php if(isset($isActive)) {
+                    if($isActive=='CategoryAdmin')
+                      echo 'active';
+                    else echo '';
+            }
+            ?>" href="http://localhost/Laptrinhweb/categoryAdmin">
               <i class="bi bi-folder"></i>
               Danh Mục Sản Phẩm
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/Laptrinhweb/productAdmin">
+            <a class="nav-link <?php if(isset($isActive)) {
+                    if($isActive=='ProductAdmin')
+                      echo 'active';
+                    else echo '';
+            }
+            ?>" href="http://localhost/Laptrinhweb/productAdmin">
               <i class="bi bi-file-earmark-text"></i>
               Sản Phẩm
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/Laptrinhweb/orderAdmin">
+            <a class="nav-link <?php if(isset($isActive)) {
+                    if($isActive=='OrderAdmin')
+                      echo 'active';
+                    else echo '';
+            }
+            ?>" href="http://localhost/Laptrinhweb/orderAdmin">
               <i class="bi bi-minecart"></i>
               Quản Lý Đơn Hàng
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/Laptrinhweb/feedbackAdmin">
+            <a class="nav-link <?php if(isset($isActive)) {
+                    if($isActive=='FeedbackAdmin')
+                      echo 'active';
+                    else echo '';
+            }
+            ?>" href="http://localhost/Laptrinhweb/feedbackAdmin">
               <i class="bi bi-question-circle-fill"></i>
               Quản Lý Phản Hồi
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="http://localhost/Laptrinhweb/userAdmin">
+            <a class="nav-link <?php if(isset($isActive)) {
+                    if($isActive=='UserAdmin')
+                      echo 'active';
+                    else echo '';
+            }
+            ?>" href="http://localhost/Laptrinhweb/userAdmin">
               <i class="bi bi-people-fill"></i>
               Quản Lý Người Dùng
             </a>

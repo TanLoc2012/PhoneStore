@@ -54,4 +54,9 @@ class UserModel extends DB{
             
         } 
     }
+
+    public function deleteToken($id, $token){
+        $sql = "delete from tokens where user_id = '$id' and token = '$token'";
+        $this->execute($sql);
+    }
 }
