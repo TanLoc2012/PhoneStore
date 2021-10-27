@@ -8,8 +8,8 @@ class OrderModel extends DB{
         return $data;
     }
 
-    public function getDetaiOrder($id){
-        $sql = "select order_details.*, product.title, product.thumbnail from order_details left join product on product.id = order_details.product_id where order_details.order_id = $id";
+    public function getDetailOrder($idList){
+        $sql = "select order_details.*, product.title, product.thumbnail from order_details left join product on product.id = order_details.product_id where order_details.order_id in $idList";
         $data = $this->executeResult($sql);
         return $data;
     }

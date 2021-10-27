@@ -11,11 +11,10 @@
                                 <div id="cate-toggle" class="category-menu-list">
                                     <ul>
                                 <?php
-                                    if(isset($data["countCategory"])){
-                                        for($i=0;$i<$data["countCategory"];$i++){
-                                            echo   '<li class="right-menu"><a href="shop-left-sidebar.html">'.$data["allCategory"][$i]["name"].'</a></li>';
-                                        }
-                                    }           
+                                    $countCategory = count($data["allCategory"]);
+                                    for($i=0;$i<$countCategory;$i++){
+                                        echo   '<li><a href="http://localhost/Laptrinhweb/Home/productList/'.$data["allCategory"][$i]["id"].'">'.$data["allCategory"][$i]["name"].'</a></li>';
+                                    }          
                                 ?>
                                     </ul>
                                 </div>

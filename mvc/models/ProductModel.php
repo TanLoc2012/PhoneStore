@@ -29,6 +29,18 @@ class ProductModel extends DB{
         $sql = "delete from product where id = $id";
         $this->execute($sql);
     }
+
+    public function selectProductCategory($id){
+        $sql = "select * from product where category_id = '$id' and deleted = 0";
+        $allProduct = $this->executeResult($sql);
+        return $allProduct;
+    }
+
+    public function getProductOrder($idList){
+        $sql = "select * from product where id in ($idList)";
+        $cartList = $this->executeResult($sql);
+        return $cartList;
+    }
 }
 
 

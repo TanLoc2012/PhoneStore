@@ -4,6 +4,17 @@
     if($user != null) {
         $fullname = $user["fullname"];
     }
+    $cart = [];
+    if(isset($_COOKIE['cart'])) {
+        $json = $_COOKIE['cart'];
+        $cart = json_decode($json, true);
+    }
+    $count = 0;
+    $totalPrice = 0;
+    foreach ($cart as $item) {
+        $count += $item['num'];
+        $totalPrice +=$item['num']*$item['priceProduct'];
+    }
 ?>
 
 <!doctype html>
@@ -50,6 +61,10 @@
         <link rel="stylesheet" href="http://localhost/Laptrinhweb/public/css/responsive.css">
         <!-- Modernizr js -->
         <script src="http://localhost/Laptrinhweb/public/js/vendor/modernizr-2.8.3.min.js"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
     </head>
     <body>
     <!--[if lt IE 8]>
@@ -212,24 +227,19 @@
                                 <div class="header-middle-right">
                                     <ul class="hm-menu">
                                         <!-- Begin Header Middle Wishlist Area -->
-                                        <li class="hm-wishlist">
-                                            <a href="wishlist.html">
-                                                <span class="cart-item-count wishlist-item-count">0</span>
-                                                <i class="fa fa-heart-o"></i>
-                                            </a>
-                                        </li>
+                                       
                                         <!-- Header Middle Wishlist Area End Here -->
                                         <!-- Begin Header Mini Cart Area -->
                                         <li class="hm-minicart">
                                             <div class="hm-minicart-trigger">
                                                 <span class="item-icon"></span>
-                                                <span class="item-text">£80.00
-                                                    <span class="cart-item-count">2</span>
+                                                <span class="item-text"><?=number_format($totalPrice)?> VNĐ
+                                                <span class="cart-item-count" ><?=$count?></span>
                                                 </span>
                                             </div>
                                             <span></span>
                                             <div class="minicart">
-                                                <ul class="minicart-product-list">
+                                                <!-- <ul class="minicart-product-list">
                                                     <li>
                                                         <a href="single-product.html" class="minicart-product-image">
                                                             <img src="images/product/small-size/5.jpg" alt="cart products">
@@ -242,26 +252,14 @@
                                                             <i class="fa fa-close"></i>
                                                         </button>
                                                     </li>
-                                                    <li>
-                                                        <a href="single-product.html" class="minicart-product-image">
-                                                            <img src="images/product/small-size/6.jpg" alt="cart products">
-                                                        </a>
-                                                        <div class="minicart-product-details">
-                                                            <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                            <span>£40 x 1</span>
-                                                        </div>
-                                                        <button class="close" title="Remove">
-                                                            <i class="fa fa-close"></i>
-                                                        </button>
-                                                    </li>
-                                                </ul>
-                                                <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p>
+                                                </ul> -->
+                                                <!-- <p class="minicart-total">SUBTOTAL: <span>£80.00</span></p> -->
                                                 <div class="minicart-button">
-                                                    <a href="shopping-cart.html" class="li-button li-button-fullwidth li-button-dark">
-                                                        <span>View Full Cart</span>
+                                                    <a href="http://localhost/Laptrinhweb/Home/card" class="li-button li-button-fullwidth li-button-dark">
+                                                        <span>Xem giỏ hàng</span>
                                                     </a>
                                                     <a href="checkout.html" class="li-button li-button-fullwidth">
-                                                        <span>Checkout</span>
+                                                        <span>Thanh Toán</span>
                                                     </a>
                                                 </div>
                                             </div>
@@ -287,16 +285,16 @@
                                         <ul>
                                             <li class="dropdown-holder"><a href="http://localhost/Laptrinhweb/Home">Trang chủ</a>
                                             </li>
-                                            <li class="megamenu-holder"><a href="http://localhost/Laptrinhweb/">Sản phẩm</a>
+                                            <li class="megamenu-holder"><a href="http://localhost/Laptrinhweb/Home/productList">Sản phẩm</a>
                                                 <ul class="megamenu hb-megamenu">
                                                     <li><a href="shop-left-sidebar.html">Điện thoại</a>
                                                         <ul>
                                             <?php
-                                                if(isset($data["countCategory"])){
-                                                    for($i=0;$i<$data["countCategory"];$i++){
-                                                        echo   '<li><a href="shop-3-column.html">'.$data["allCategory"][$i]["name"].'</a></li>';
+                                                $countCategory = count($data["allCategory"]);
+                                                    for($i=0;$i<$countCategory;$i++){
+                                                        echo   '<li><a href="http://localhost/Laptrinhweb/Home/productList/'.$data["allCategory"][$i]["id"].'">'.$data["allCategory"][$i]["name"].'</a></li>';
                                                     }
-                                                }           
+                                                        
                                             ?>
                                                         </ul>
                                                     </li>

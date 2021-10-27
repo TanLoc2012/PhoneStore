@@ -3,11 +3,12 @@
                     <div class="row">
                         <!-- Begin Li's Section Area -->
                     <?php 
-                        for($i=0;$i<$data["countCategory"];$i++) {
+                        $countCategory = count($data["allCategory"]);
+                        for($i=0;$i<$countCategory;$i++) {
                             echo '<div class="col-lg-12">
                                 <div class="li-section-title">
                                     <h2>
-                                        <span>'.$data["allCategory"][$i]["name"].'</span>
+                                        <a href="http://localhost/Laptrinhweb/Home/productList/'.$data["allCategory"][$i]["id"].'"><span>'.$data["allCategory"][$i]["name"].'</span></a>
                                     </h2>
                                 </div>
                                 <div class="row">
@@ -15,11 +16,11 @@
                             for($j=0;$j<$data["countProduct"];$j++){
                                 if($data["allProduct"][$j]["category_id"] == $data["allCategory"][$i]["id"]){
                                 echo    '
-                                                <div class="col-lg-12">
+                                                <div style="margin-bottom:50px" class="col-lg-12">
                                                     <!-- single-product-wrap start -->
                                                     <div class="single-product-wrap">
                                                         <div class="product-image">
-                                                            <a href="single-product.html">
+                                                            <a href="http://localhost/Laptrinhweb/Home/productDetail/'.$data["allProduct"][$j]["id"].'">
                                                                 <img src="'.$data["allProduct"][$j]["thumbnail"].'" alt="Lis Product Image">
                                                             </a>
                                                             <span class="sticker">New</span>
@@ -40,17 +41,17 @@
                                                                         </ul>
                                                                     </div>
                                                                 </div>
-                                                                <h4><a class="product_name" href="single-product.html">'.$data["allProduct"][$j]["title"].'</a></h4>
+                                                                <h4><a class="product_name" href="http://localhost/Laptrinhweb/Home/productDetail/'.$data["allProduct"][$j]["id"].'">'.$data["allProduct"][$j]["title"].'</a></h4>
                                                                 <div style="margin-top:10px" class="price-box">
                                                                     <span  class="new-price">'.number_format($data["allProduct"][$j]["price"]).' VNĐ</span>
                                                                 </div>
                                                                 <div  class="price-box">
-                                                                    <span style="text-decoration:line-through; font-weight:200;" class="new-price">'.number_format($data["allProduct"][$j]["discount"]).' VNĐ</span>
+                                                                    <span class="old-price">'.number_format($data["allProduct"][$j]["discount"]).' VNĐ</span>
                                                                 </div>
                                                                 </div>
                                                             <div class="add-actions">
                                                                 <ul class="add-actions-link">
-                                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                                    <li onclick="addToCard('.$data["allProduct"][$j]["id"].','.$data["allProduct"][$j]["price"].')" class="add-cart active">Thêm vào giỏ</li>
                                                                     <li><a class="links-details" href="wishlist.html"><i class="fa fa-heart-o"></i></a></li>
                                                                     <li><a href="#" title="quick view" class="quick-view-btn" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-eye"></i></a></li>
                                                                 </ul>
@@ -70,3 +71,16 @@
 
                 </div>
             </section>
+<script type="text/javascript">
+    function addToCard(productId, priceProduct) {
+        var action = "add";
+        $.ajax({
+            url:"home/addToCart",
+            method:"POST",
+            data:{action:action ,productId:productId, num:1, priceProduct:priceProduct},
+            success:function(data){
+                location.reload();
+            }
+        });
+    }
+</script>
